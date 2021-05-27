@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package schemaVersion="1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <name>@CMSIS_PACK_NAME@</name>
+  <description>@CMSIS_PACK_DESCRIPTION@</description>
+  <vendor>@CMSIS_PACK_VENDOR@</vendor>
+  <license>@CMSIS_PACK_LICENSE@</license>
+  <url>@CMSIS_PACK_URL@</url>
+
+  <releases>
+    <release version="@CMSIS_PACK_VERSION@" date="@CMSIS_PACK_DATE@">@CMSIS_PACK_CHANGE_LOG@
+    </release>
+  </releases>
+
+  <conditions>@CMSIS_PACK_CONDITIONS@
+  </conditions>
+
+  <components>@CMSIS_PACK_COMPONENTS@
+  </components>
+
+</package>
