@@ -87,6 +87,21 @@ cmsis_add_component(
   "libraries/standard/coreJSON"
 )
 
+### Add Config Files ###
+
+# cmsis_add_config arguments:
+#   component
+#   file
+#   category
+#   version
+
+cmsis_add_config(
+  "ota"
+  "libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_config_defaults.h"
+  "header"
+  "1.0.0"
+)
+
 ### Add Dependencies ###
 
 # cmsis_add_dependency arguments:
