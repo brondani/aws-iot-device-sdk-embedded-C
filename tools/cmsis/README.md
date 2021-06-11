@@ -136,7 +136,7 @@ components:
 | Argument          | Description
 |:------------------|:----------------------------------------
 | \<rule>           | It must be `require`, `accept` or `deny`
-| \<key:value list> | Typically external component [attributes](#attributes), but not limited to it.
+| \<key:value list> | Typically external [component attributes](#component-attributes), but not limited to it.
 <br />
 
 ### files
