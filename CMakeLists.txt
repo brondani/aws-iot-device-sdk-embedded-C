@@ -169,3 +169,7 @@ if(DOWNLOAD_CERTS)
              DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/tests)
     endif()
 endif()
+
+if(CMSIS_GENERATE_PACK)
+  include(${CMAKE_CURRENT_LIST_DIR}/cmsis-targets.cmake)
+endif()
