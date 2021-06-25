@@ -71,3 +71,12 @@ target_sources(cmsis_tinycbor PUBLIC ${TINYCBOR_SOURCES})
 target_include_directories(cmsis_tinycbor PUBLIC ${TINYCBOR_INCLUDE_DIRS})
 set_target_properties(cmsis_tinycbor PROPERTIES DEFINE_SYMBOL "")
 set_target_properties(cmsis_tinycbor PROPERTIES LINKER_LANGUAGE C)
+
+# OTA_SOURCES includes JSON_SOURCES variable from libraries/aws/ota-for-aws-iot-embedded-sdk/source/dependency/coreJSON/jsonFilePaths.cmake instead of libraries/standard/coreJSON/jsonFilePaths.cmake
+# Such multiple checkouts of a single dependency should be ideally cleaned up.
+include(${CMAKE_CURRENT_LIST_DIR}/libraries/aws/ota-for-aws-iot-embedded-sdk/source/dependency/coreJSON/jsonFilePaths.cmake)
+add_library(cmsis_aws_iot_ota_json)
+target_sources(cmsis_aws_iot_ota_json PUBLIC ${JSON_SOURCES})
+target_include_directories(cmsis_aws_iot_ota_json PUBLIC ${JSON_INCLUDE_PUBLIC_DIRS})
+set_target_properties(cmsis_aws_iot_ota_json PROPERTIES DEFINE_SYMBOL "")
+set_target_properties(cmsis_aws_iot_ota_json PROPERTIES LINKER_LANGUAGE C)

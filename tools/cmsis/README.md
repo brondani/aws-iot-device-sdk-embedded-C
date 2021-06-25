@@ -51,47 +51,49 @@ Usage:
 The YAML structure is described below.
 
 ```
-repo:
-  build:
-    - options:
-  output:
+build:
+  - options:
 
-pack:
-  name:
-  description:
-  vendor:
-  license:
-  url:
-  releases:
-    - version:
-      date:
-      changelog:
-
-components:
+packs:
   - name:
-    target: [<list>]
-    attributes: {<key:value list>}
     description:
-    dependencies: [<list>]
-    conditions:
-      - <require|accept|deny>: {<key:value list>}
-    files:
-      - <name>: {<key:value list>}
+    vendor:
+    license:
+    url:
+    output:
+    releases:
+      - version:
+        date:
+        changelog:
+    apis:
+      - name:
+        attributes: {<key:value list>}
+        description:
+        files:
+          - <name>: {<key:value list>}
+        extensions: [<list>]
+    components:
+      - name:
+        target: [<list>]
+        attributes: {<key:value list>}
+        description:
+        dependencies: [<list>]
+        conditions:
+          - <require|accept|deny>: {<key:value list>}
+        files:
+          - name: 
+            attributes: {<key:value list>}
+            conditions:
+              - <require|accept|deny>: {<key:value list>}
+        extensions: [<list>]
   ```
-### repo
+### build
 | Argument        | Description
 |:----------------|:----------------------------------------
-| build           | List of CMake command line [options](#options). Currently only one build is supported.
-| output          | Path to generated pack files
+| options         | List of CMake command line options. Currently only one build is supported.
 <br />
 
-### options
-| Argument        | Description
-|:----------------|:----------------------------------------
-| options         | CMake command line options for a single CMake generation step
-<br />
-
-### pack
+### packs
 | Argument        | Description
 |:----------------|:----------------------------------------
 | name            | Unique name of the Software Pack
@@ -99,7 +101,9 @@ components:
 | vendor          | Name of the supplier or vendor of the Software Pack
 | license         | Path to license document
 | url             | HTTP URL or file URI location of the Software Pack
+| output          | Path to generated pack files
 | releases        | List of Software Pack [releases](#releases)
+| components      | List of Software Pack [components](#components)
 <br />
 
 ### releases
@@ -110,6 +114,16 @@ components:
 | changelog       | Release notes
 <br />
 
+### apis
+| Argument        | Description
+|:----------------|:----------------------------------------
+| name            | Unique name of the API
+| description     | API brief description
+| attributes      | List of API [attributes](#attributes)
+| files           | List of API [files](#files)
+| extensions      | List of whitelisted file extensions for recursive copy
+<br />
+
 ### components
 | Argument        | Description
 |:----------------|:----------------------------------------
@@ -117,12 +131,13 @@ components:
 | target          | List of CMake targets associated to the component
 | description     | Component brief description
 | dependencies    | List of component dependencies. Other components or CMake targets are accepted.
-| attributes      | List of [component attributes](#component-attributes)
-| conditions      | List of [component conditions](#component-conditions)
+| attributes      | List of component [attributes](#attributes)
+| conditions      | List of component [conditions](#conditions)
 | files           | List of component [files](#files)
+| extensions      | List of whitelisted file extensions for recursive copy
 <br />
 
-### component attributes
+### attributes
 | Argument        | Description
 |:----------------|:----------------------------------------
 | Cclass          | Component class
@@ -132,18 +147,12 @@ components:
 | Cversion        | Component version
 <br />
 
-### component conditions
-| Argument          | Description
-|:------------------|:----------------------------------------
-| \<rule>           | It must be `require`, `accept` or `deny`
-| \<key:value list> | Typically external [component attributes](#component-attributes), but not limited to it.
-<br />
-
 ### files
 | Argument          | Description
 |:------------------|:----------------------------------------
-| \<name>           | File path relative to the pack root directory
-| \<key:value list> | List of [file attributes](#file-attributes).
+| name              | File path relative to the pack root directory
+| attributes        | List of [file attributes](#file-attributes)
+| conditions        | List of file [conditions](#conditions)
 <br />
 
 ### file attributes
@@ -152,6 +161,13 @@ components:
 | category        | Defines the purpose of the file. 
 | attr            | Defines the special use and handling of a file.
 | version         | File-specific version information.
+<br />
+
+### conditions
+| Argument          | Description
+|:------------------|:----------------------------------------
+| \<rule>           | It must be `require`, `accept` or `deny`
+| \<key:value list> | Typically external component [attributes](#attributes), but not limited to it.
 <br />
 
 > For further info see [components](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_components), [conditions](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_conditions_pg.html#element_conditions) and [file](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_file) in the PDSC specification.
