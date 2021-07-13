@@ -1,7 +1,7 @@
 ### CMSIS Pack manifest file ###
 
 build:
-  - options: "-DCMSIS_GENERATE_PACK=ON"
+  - options: "cmake -G Ninja -DCMSIS_GENERATE_PACK=ON"
 
 packs:
   - name: "IoT_C-SDK"
@@ -13,29 +13,29 @@ packs:
     url: "https://github.com/aws/aws-iot-device-sdk-embedded-C/"
     output: "generated"
     releases:
-      - version: "1.0.0"
-        date: "2021-06-07"
+      - version: "202103.0.0-Alpha"
+        date: "2021-07-12"
         changelog: "Based on https://github.com/aws/aws-iot-device-sdk-embedded-C.git repository"
 
     components:
       - name: cmsis_aws_iot_defender
         target: cmsis_aws_iot_defender
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Defender", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Defender", Cversion: "1.1.0"}
         description: "Client library for Device Defender service"
 
       - name: cmsis_aws_iot_shadow
         target: cmsis_aws_iot_shadow
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Shadow", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Shadow", Cversion: "1.1.0"}
         description: "Client library for Device Shadow service"
 
       - name: cmsis_aws_iot_jobs
         target: cmsis_aws_iot_jobs
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Jobs", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT Jobs", Cversion: "1.1.0"}
         description: "Client library for Device Jobs service"
 
       - name: cmsis_aws_iot_ota
         target: cmsis_aws_iot_ota
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT OTA", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "AWS IoT OTA", Cversion: "3.0.0"}
         description: "Client library for Device Over-the-air Update service"
         dependencies: [cmsis_tinycbor, cmsis_aws_iot_json, cmsis_aws_iot_ota_json]
         conditions:
@@ -52,7 +52,7 @@ packs:
 
       - name: cmsis_aws_iot_mqtt
         target: cmsis_aws_iot_mqtt
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreMQTT", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreMQTT", Cversion: "1.1.1"}
         description: "Client library for coreMQTT"
         dependencies: cmsis_aws_iot_ota
         files:
@@ -69,21 +69,21 @@ packs:
 
       - name: cmsis_aws_iot_http
         target: cmsis_aws_iot_http
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreHTTP", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreHTTP", Cversion: "2.0.1"}
         description: "Client library for coreHTTP"
-        dependencies: [cmsis_aws_iot_ota, cmsis_aws_iot_ota_mqtt]
+        dependencies: [cmsis_aws_iot_ota_mqtt]
         files:
           - name: demos/ota/ota_demo_core_http/core_http_config.h
             attributes: {category: header, attr: config, version: "1.0.0"}
 
       - name: cmsis_aws_iot_json
         target: cmsis_aws_iot_json
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreJSON", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "coreJSON", Cversion: "3.0.1"}
         description: "Parser for ECMA-404 JSON standard"
 
       - name: cmsis_aws_iot_backoff_algorithm
         target: cmsis_aws_iot_backoff_algorithm
-        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "Backoff Algorithm", Cversion: "1.0.0"}
+        attributes: {Cclass: "AWS IoT", Cgroup: "Features", Csub: "Backoff Algorithm", Cversion: "1.0.1"}
         description: "Backoff Algorithm"
 
       - name: cmsis_aws_iot_ota_freertos
