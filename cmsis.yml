@@ -12,6 +12,12 @@ packs:
     license: "LICENSE"
     url: "https://github.com/aws/aws-iot-device-sdk-embedded-C/"
     output: "generated"
+
+    requirements:
+      packages:
+        - attributes: {vendor: "ARM", name: "mbedTLS", version: "1.7.0"}
+        - attributes: {vendor: "MDK-Packs", name: "TinyCBOR", version: "1.0.0"}
+
     releases:
       - version: "202103.0.0-Alpha"
         date: "2021-07-12"

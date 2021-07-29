@@ -74,6 +74,13 @@ packs:
     license:
     url:
     output:
+    requirements:
+      packages:
+        - attributes: {<key:value list>}
+      compilers:
+        - attributes: {<key:value list>}
+      languages:
+        - attributes: {<key:value list>}
     releases:
       - version:
         date:
@@ -119,8 +126,17 @@ packs:
 | license         | Path to license document
 | url             | HTTP URL or file URI location of the Software Pack
 | output          | Path to generated pack files
+| requirements    | Lists of [requirements](#requirements)
 | releases        | List of Software Pack [releases](#releases)
 | components      | List of Software Pack [components](#components)
+<br />
+
+### requirements
+| Argument        | Description
+|:----------------|:----------------------------------------
+| packages        | List of required package attributes
+| compilers       | List of required compiler attributes
+| languages       | List of required language attributes
 <br />
 
 ### releases
@@ -194,4 +210,8 @@ packs:
 | \<key:value list> | Typically external component [attributes](#attributes), but not limited to it.
 <br />
 
-> For further info see [components](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_components), [conditions](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_conditions_pg.html#element_conditions) and [file](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_file) in the PDSC specification.
+> For further info please consult the PDSC specification, for example:
+- [components](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_components)
+- [conditions](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_conditions_pg.html#element_conditions) 
+- [file](https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_file)
+- [requirements](https://arm-software.github.io/CMSIS_5/Pack/html/element_requirements_pg.html)
