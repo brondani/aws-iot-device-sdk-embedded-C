@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<package schemaVersion="1.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PACK.xsd">
+  <name>IoT_C-SDK</name>
+
+  <description>The AWS IoT Device SDK for Embedded C is a collection of C source
+files that can be used in embedded applications to securely connect
+to AWS IoT Core and interact with other AWS IoT services on AWS Cloud.</description>
+
+  <vendor>AWS</vendor>
+
+  <license>LICENSE</license>
+
+  <url>https://github.com/aws/aws-iot-device-sdk-embedded-C/</url>
+
+  <requirements>
+    <packages>
+      <package name="mbedTLS" vendor="ARM" version="1.7.0"/>
+      <package name="TinyCBOR" vendor="MDK-Packs" version="1.0.0"/>
+    </packages>
+  </requirements>
+
+  <releases>
+    <release date="2021-07-12" version="202103.0.0-Alpha">Based on https://github.com/aws/aws-iot-device-sdk-embedded-C.git repository</release>
+  </releases>
+
+  <conditions>
+    <condition id="cmsis_aws_iot_ota Condition">
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="coreJSON"/>
+      <require Cclass="Data Exchange" Cgroup="CBOR" Csub="TinyCBOR"/>
+    </condition>
+    <condition id="cmsis_aws_iot_ota_mqtt Condition">
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT OTA"/>
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="coreMQTT"/>
+    </condition>
+    <condition id="cmsis_aws_iot_mqtt Condition">
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT OTA"/>
+    </condition>
+    <condition id="cmsis_aws_iot_ota_http Condition">
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT OTA"/>
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="coreHTTP"/>
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="OTA MQTT"/>
+    </condition>
+    <condition id="cmsis_aws_iot_http Condition">
+      <require Cclass="AWS IoT" Cgroup="Features" Csub="OTA MQTT"/>
+    </condition>
+  </conditions>
+
+  <components>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT Defender" Cversion="1.1.0">
+      <description>Client library for Device Defender service</description>
+      <files>
+        <file category="source" name="libraries/aws/device-defender-for-aws-iot-embedded-sdk/source/defender.c"/>
+        <file category="include" name="libraries/aws/device-defender-for-aws-iot-embedded-sdk/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT Shadow" Cversion="1.1.0">
+      <description>Client library for Device Shadow service</description>
+      <files>
+        <file category="source" name="libraries/aws/device-shadow-for-aws-iot-embedded-sdk/source/shadow.c"/>
+        <file category="include" name="libraries/aws/device-shadow-for-aws-iot-embedded-sdk/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT Jobs" Cversion="1.1.0">
+      <description>Client library for Device Jobs service</description>
+      <files>
+        <file category="source" name="libraries/aws/jobs-for-aws-iot-embedded-sdk/source/jobs.c"/>
+        <file category="include" name="libraries/aws/jobs-for-aws-iot-embedded-sdk/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT OTA" Cversion="3.0.0" condition="cmsis_aws_iot_ota Condition">
+      <description>Client library for Device Over-the-air Update service</description>
+      <files>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_base64_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_interface_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_os_interface.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_platform_interface.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota.c"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota_base64.c"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota_interface.c"/>
+        <file category="include" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/"/>
+        <file category="include" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/"/>
+        <file category="include" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/portable/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="OTA MQTT" Cversion="1.0.0" condition="cmsis_aws_iot_ota_mqtt Condition">
+      <description>Client library for OTA MQTT</description>
+      <files>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_cbor_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_mqtt_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota_cbor.c"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota_mqtt.c"/>
+        <file attr="config" category="header" name="demos/ota/ota_demo_core_mqtt/ota_config.h" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="coreMQTT" Cversion="1.1.1" condition="cmsis_aws_iot_mqtt Condition">
+      <description>Client library for coreMQTT</description>
+      <files>
+        <file category="source" name="libraries/standard/coreMQTT/source/core_mqtt.c"/>
+        <file category="source" name="libraries/standard/coreMQTT/source/core_mqtt_serializer.c"/>
+        <file category="source" name="libraries/standard/coreMQTT/source/core_mqtt_state.c"/>
+        <file category="include" name="libraries/standard/coreMQTT/source/include/"/>
+        <file category="include" name="libraries/standard/coreMQTT/source/interface/"/>
+        <file attr="config" category="header" name="demos/ota/ota_demo_core_mqtt/core_mqtt_config.h" version="1.0.0"/>
+        <file category="include" name="demos/logging-stack/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="OTA HTTP" Cversion="1.0.0" condition="cmsis_aws_iot_ota_http Condition">
+      <description>Client library for OTA HTTP</description>
+      <files>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/include/ota_http_private.h"/>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/ota_http.c"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="coreHTTP" Cversion="2.0.1" condition="cmsis_aws_iot_http Condition">
+      <description>Client library for coreHTTP</description>
+      <files>
+        <file category="source" name="libraries/standard/coreHTTP/source/core_http_client.c"/>
+        <file category="source" name="libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser/http_parser.c"/>
+        <file category="include" name="libraries/standard/coreHTTP/source/dependency/3rdparty/http_parser/"/>
+        <file category="include" name="libraries/standard/coreHTTP/source/include/"/>
+        <file category="include" name="libraries/standard/coreHTTP/source/interface/"/>
+        <file attr="config" category="header" name="demos/ota/ota_demo_core_http/core_http_config.h" version="1.0.0"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="coreJSON" Cversion="3.0.1">
+      <description>Parser for ECMA-404 JSON standard</description>
+      <files>
+        <file category="source" name="libraries/standard/coreJSON/source/core_json.c"/>
+        <file category="include" name="libraries/standard/coreJSON/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="Backoff Algorithm" Cversion="1.0.1">
+      <description>Backoff Algorithm</description>
+      <files>
+        <file category="source" name="libraries/standard/backoffAlgorithm/source/backoff_algorithm.c"/>
+        <file category="include" name="libraries/standard/backoffAlgorithm/source/include/"/>
+      </files>
+    </component>
+    <component Cclass="AWS IoT" Cgroup="Features" Csub="AWS IoT OTA OS" Cvariant="FreeRTOS" Cversion="1.0.0">
+      <description>OTA OS Functional Interface for FreeRTOS</description>
+      <files>
+        <file category="source" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/portable/os/ota_os_freertos.c"/>
+        <file category="include" name="libraries/aws/ota-for-aws-iot-embedded-sdk/source/portable/os/"/>
+      </files>
+    </component>
+  </components>
+</package>
+

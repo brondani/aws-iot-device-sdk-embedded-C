@@ -1,7 +1,8 @@
 ### CMSIS Pack manifest file ###
 
 build:
-  - options: "cmake -G Ninja -DCMSIS_GENERATE_PACK=ON"
+  - name: "build1"
+    options: "cmake -G Ninja -DCMSIS_GENERATE_PACK=ON"
 
 packs:
   - name: "IoT_C-SDK"
@@ -21,7 +22,7 @@ packs:
     releases:
       - version: "202103.0.0-Alpha"
         date: "2021-07-12"
-        changelog: "Based on https://github.com/aws/aws-iot-device-sdk-embedded-C.git repository"
+        description: "Based on https://github.com/aws/aws-iot-device-sdk-embedded-C.git repository"
 
     components:
       - name: cmsis_aws_iot_defender
